@@ -84,6 +84,8 @@ predict.logitreg <- function(object, type = "link", ...) {
 
 #' Plot ROC curve
 #'
+#' @param x "logitreg" object
+#' @param y not used.
 #' @param ... arguments to pass to ROCR::plot.
 #' @method plot logitreg
 #' @import ROCR
@@ -91,12 +93,10 @@ predict.logitreg <- function(object, type = "link", ...) {
 #' @examples
 #' data <- logitreg::sim_data(300, seed = 321, numerics = 2, dataframe = TRUE)
 #' model <- logitreg(response ~ ., data = data)
-#' pred <- ROCR::prediction(predict(model,
-#'   type = "response"
-#' ), data$response)
-#' perf <- ROCR::performance(pred, "acc")
-#' plot(perf)
+#' plot(model)
 #' @export
-plot.logitreg <- function(...) {
-  ROCR::plot(...)
+plot.logitreg <- function(x, y, ...) {
+  pred <- ROCR::prediction(predict(x, type = "response"), x$response)
+  perf <- ROCR::performance(pred, "acc")
+  ROCR::plot(perf, ...)
 }

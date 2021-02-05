@@ -42,7 +42,7 @@ test_that("predict works", {
 })
 
 test_that("logitreg returns for trouble1 and trouble2 datasets", {
-  load(system.file("inst", "testdata", "logitreg-data-trouble.Rdata",
+  load(system.file("testdata", "logitreg-data-trouble.Rdata",
     package = "logitreg"
   ))
   logitreg_estimates <- coefficients(logitreg(

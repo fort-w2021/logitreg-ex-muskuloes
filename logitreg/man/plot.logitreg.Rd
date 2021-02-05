@@ -4,9 +4,13 @@
 \alias{plot.logitreg}
 \title{Plot ROC curve}
 \usage{
-\method{plot}{logitreg}(...)
+\method{plot}{logitreg}(x, y, ...)
 }
 \arguments{
+\item{x}{"logitreg" object}
+
+\item{y}{not used.}
+
 \item{...}{arguments to pass to ROCR::plot.}
 }
 \description{
@@ -15,9 +19,5 @@ Plot ROC curve
 \examples{
 data <- logitreg::sim_data(300, seed = 321, numerics = 2, dataframe = TRUE)
 model <- logitreg(response ~ ., data = data)
-pred <- ROCR::prediction(predict(model,
-  type = "response"
-), data$response)
-perf <- ROCR::performance(pred, "acc")
-plot(perf)
+plot(model)
 }
